@@ -15,13 +15,48 @@ Park.prototype.removeDinosaurBySpecies = function (dinosaurSpecies) {
     this.collectionOfDinosaurs.splice(indexOfDinosaur, 1);
 };
 
-Park.prototype.getMostPopular = function (collectionOfDinosaurs) {
-    var popular = [];
-    for (var dinosaur in collectionOfDinosaurs) {
-        var value = dinosaur[guestsAttractedPerDay];
-        popular.push(value);
+Park.prototype.getMostPopular = function () {
+    let mostPopular = this.collectionOfDinosaurs[0];
+    
+    for (const dino of this.collectionOfDinosaurs) {
+        if (dino.guestsAttractedPerDay > mostPopular.guestsAttractedPerDay) {
+            mostPopular = dino;
     }
-    popular.sort(function (a, b) {return b-a});
-    return popular[0];
-}
+  }
+
+    return mostPopular;
+};
+
+  Park.prototype.findSpecies = function (species) {
+    const oneSpecies = [];
+
+    for (const dino of this.collectionOfDinosaurs) {
+    if (dino.species === species) {
+      oneSpecies.push(dino);
+    }
+  } 
+  
+    return oneSpecies;
+};
+
+Park.prototype.visitsDaily = function () {
+    let visitors = 0;
+
+  for (const dino of this.collectionOfDinosaurs) {
+    visitors += this.collectionOfDinosaurs.guestsAttractedPerDay;
+  }
+
+  return visitors;
+};
+
+Park.prototype.visitsYearly = function () {
+    const visitorsYearly = this.visitsDaily() * 365
+    return visitorsYearly
+};
+
+Park.prototype.annualRevenue = function () {
+    const revenueYearly = this.visitsDaily() * this.ticketPrice
+    return revenueYearly
+};
+
   module.exports = Park;
