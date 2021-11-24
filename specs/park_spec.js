@@ -1,14 +1,18 @@
 const assert = require('assert');
 const Park = require('../models/park.js');
 const Dinosaur = require('../models/dinosaur.js');
+const { it } = require('mocha');
 
 describe('Park', function() {
 
   let dinosaur;
+  let park;
   let dino1;
   let dino2;
   let dino3;
   let dino4;
+  let dino5;
+  let dino6;
 
   beforeEach(function () {
 
@@ -58,7 +62,7 @@ describe('Park', function() {
     assert.deepStrictEqual(actual, dino1);
   });
 
-  it('should be able to find all dinosaurs of a particular species'), function () {
+  it('should be able to find all dinosaurs of a particular species', function () {
     park.addDinosaur(dino1);
     park.addDinosaur(dino2);
     park.addDinosaur(dino3);
@@ -67,9 +71,9 @@ describe('Park', function() {
     park.addDinosaur(dino6);
     const actual = park.findSpecies('Diplodocus')
     assert.deepStrictEqual(actual, [dino4, dino5, dino6]);
-  };
+  });
 
-  it('should be able to calculate the total number of visitors per day'), function () {
+  it('should be able to calculate the total number of visitors per day', function () {
     park.addDinosaur(dino1);
     park.addDinosaur(dino2);
     park.addDinosaur(dino3);
@@ -78,9 +82,9 @@ describe('Park', function() {
     park.addDinosaur(dino6);
     const actual = park.visitsDaily()
     assert.deepStrictEqual(actual, 492);
-  };
+  });
 
-  it('should be able to calculate the total number of visitors per year'), function () {
+  it('should be able to calculate the total number of visitors per year', function () {
     park.addDinosaur(dino1);
     park.addDinosaur(dino2);
     park.addDinosaur(dino3);
@@ -89,9 +93,9 @@ describe('Park', function() {
     park.addDinosaur(dino6);
     const actual = park.visitsYearly()
     assert.deepStrictEqual(actual, 179580);
-  };
+  });
 
-  it('should be able to calculate total revenue for one year'), function () {
+  it('should be able to calculate total revenue for one year', function () {
     park.addDinosaur(dino1);
     park.addDinosaur(dino2);
     park.addDinosaur(dino3);
@@ -100,6 +104,6 @@ describe('Park', function() {
     park.addDinosaur(dino6);
     const actual = park.annualRevenue()
     assert.deepStrictEqual(actual, 1795800);
-  };
+  });
 
 });
